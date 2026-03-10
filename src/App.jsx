@@ -6,23 +6,25 @@ import Checkout from "./pages/Checkout"
 import Auth from "./pages/Auth"
 import AuthProvider from "./context/AuthContext"
 import ProductDetails from "./pages/ProductDetails"
+import CartProvider from "./context/CartContext"
 
 
 function App() {
-
   return (
-    <div className="app">
-      <AuthProvider>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/auth" element={<Auth />} />
-        <Route path="/products/:id" element={<ProductDetails />} />
-      </Routes>
-      </AuthProvider>
-    </div>
-  )
+    <AuthProvider>
+      <CartProvider>
+        <div className="app">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/products/:id" element={<ProductDetails />} />
+          </Routes>
+        </div>
+      </CartProvider>
+    </AuthProvider>
+  );
 }
 
 export default App
